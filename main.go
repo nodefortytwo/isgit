@@ -35,18 +35,6 @@ func GetRootDirWD() (string, error) {
 	return GetRootDir(p)
 }
 
-func GetRootDirWithBinary(path string) (string, error) {
-	cmd := exec.Command("git", "rev-parse", "--show-toplevel")
-	var out bytes.Buffer
-	cmd.Stdout = &out
-	err := cmd.Run()
-	if err != nil {
-		return "", err
-	}
-	return strings.TrimSpace(out.String()), nil
-}
-
-
 
 func containsGit(path string) (bool, error) {
 	files, err := ioutil.ReadDir(path)
